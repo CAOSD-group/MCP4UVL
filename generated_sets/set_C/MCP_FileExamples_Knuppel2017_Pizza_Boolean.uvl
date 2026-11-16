@@ -1,0 +1,22 @@
+features
+    Pizza // Missing 'abstract', although the description does not mention it
+        mandatory
+            Topping
+                or
+                    Salami
+                    Ham
+                    Mozzarella
+            Size
+                alternative
+                    Normal
+                    Big
+            Dough
+                alternative
+                    Neapolitan
+                    Sicilian
+        optional
+            CheesyCrust
+constraints
+    CheesyCrust => Big
+
+// time -> 28 secs

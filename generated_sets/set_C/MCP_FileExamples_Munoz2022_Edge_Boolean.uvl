@@ -1,0 +1,27 @@
+features
+    EdgeSystem
+        mandatory
+            Interface // Treats Interface as mandatory
+                or
+                    Mobile
+                        alternative
+                            "3G" {Cost 30}
+                            "4G" {Cost 40}
+                            "5G" {Cost 75}
+                    WiFi
+                    Ethernet {Cost 15}
+            VNF // Treats the VNFs as mandatory
+                or
+                    Monitor
+                    Firewall
+                    Encryption
+        optional
+            Antenna // Treats Antenna as optional instead of or
+                alternative
+                    Small {Cost 3}
+                    Normal {Cost 4}
+                    Large {Cost 5}
+constraints
+    Ethernet => !Antenna
+
+// time -> 29 secs

@@ -1,0 +1,38 @@
+namespace Pizza
+
+features
+	Pizza // Missing the City Omashu feature
+		mandatory
+			Base {Price 2.0}
+			Sauce
+				alternative
+					Tomato {Price 0.8}
+					CremeFraiche {Price 1.1}
+			Toppings // Toppings are mandatory in the MCP-generated model, whereas they are optional in the hand-written one
+				[1..3]
+					Mushrooms {Price 0.5}
+					Onion {Price 0.3}
+					Olive {Price 0.3}
+					Pineapple {Price 0.8}
+			Integer Size
+			Delivery // Different structure for the address feature
+				mandatory
+					Address cardinality [1..10]
+						mandatory
+							String Street
+							String City
+		optional
+			Cheeses
+				or
+					Mozzarella {Price 0.4}
+					Cheddar {Price 0.6}
+
+constraints
+	Cheddar => !CremeFraiche
+	sum(Price) < 5
+	Size >= 20
+	Size <= 60
+	len(Street) <= 100
+	City == "Omashu"
+
+// time -> 57 secs
